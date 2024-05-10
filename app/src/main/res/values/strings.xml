@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">RestaurantFinder</string>
+    <string name="project_name">EatsExplorer</string>
+    <string name="hello">Hey there</string>
+    <string name="create_account">Create an account</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="hide_password">Hide password\n</string>
+    <string name="show_password">Show Password</string>
+    <string name="terms_conditions">"By continuing you accept our privacy policy and terms of use</string>
+    <string name="register">Register</string>
+    <string name="login">Already have an account login</string>
+    <string name="search">What are you looking?</string>
+
 </resources>
