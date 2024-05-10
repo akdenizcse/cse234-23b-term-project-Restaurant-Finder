@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.cenkeraydin.restaurantfinder.ui.theme.RestaurantFinderTheme
 
 @Composable
 fun LoginScreen(navControler: NavController){
@@ -111,7 +113,7 @@ fun LoginScreen(navControler: NavController){
 fun BackButton(
     navController: NavController,
     modifier: Modifier = Modifier,
-    icon: ImageVector = Icons.Default.ArrowBackIosNew,
+    icon: ImageVector = Icons.Default.ArrowBack,
     contentDescription: String = "Back"
 ) {
     Row(modifier = modifier) {
@@ -127,7 +129,7 @@ fun BackButton(
 @Preview(showBackground = true)
 @Composable
 fun prevLoginScreen(){
-    Proje1Theme {
+   RestaurantFinderTheme {
         var navController = rememberNavController()
         LoginScreen(navControler = navController)
     }
