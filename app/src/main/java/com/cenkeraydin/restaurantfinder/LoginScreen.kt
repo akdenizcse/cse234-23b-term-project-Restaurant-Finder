@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -37,13 +38,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.cenkeraydin.restaurantfinder.ui.theme.RestaurantFinderTheme
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun LoginScreen(navControler: NavController){
+fun LoginScreen(navControler: NavController) {
 
-    var email by remember{ mutableStateOf("") }
-
+    val auth = FirebaseAuth.getInstance()
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
+
     BackButton(navController = navControler)
     Column(
         modifier = Modifier
@@ -71,8 +76,8 @@ fun LoginScreen(navControler: NavController){
 
         OutlinedTextField(
             value = email,
-            onValueChange ={
-                email=it
+            onValueChange = {
+                email = it
             },
             label = {
                 Text(text = "Email")
@@ -82,8 +87,8 @@ fun LoginScreen(navControler: NavController){
 
         OutlinedTextField(
             value = password,
-            onValueChange ={
-                password=it
+            onValueChange = {
+                password = it
             },
             label = {
                 Text(text = "Password")
@@ -93,20 +98,33 @@ fun LoginScreen(navControler: NavController){
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick ={
-            navControler.navigate("HomeScreen")
+        Button(onClick = {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        navControler.navigate("HomeScreen")
+                    } else {
+                        errorMessage = "Giriş başarısız! ${task.exception?.message}"
+                    }
+                }
         }) {
             Text("Login")
 
         }
         Spacer(modifier = Modifier.height(32.dp))
 
-        TextButton(onClick = { }){
+        TextButton(onClick = { }) {
             Text(text = "Forgot Password")
         }
+        errorMessage?.let {
+            Text(
+                modifier = Modifier.padding(vertical = 8.dp),
+                text = it,
+                color = Color.Red
+            )
 
 
-
+        }
     }
 }
 @Composable
