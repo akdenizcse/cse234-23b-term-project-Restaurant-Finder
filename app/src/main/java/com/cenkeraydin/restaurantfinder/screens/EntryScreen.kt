@@ -1,4 +1,4 @@
-package com.cenkeraydin.restaurantfinder
+package com.cenkeraydin.restaurantfinder.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.cenkeraydin.restaurantfinder.R
 import com.cenkeraydin.restaurantfinder.ui.theme.RestaurantFinderTheme
 
 @Composable

@@ -1,4 +1,4 @@
-package com.cenkeraydin.restaurantfinder
+package com.cenkeraydin.restaurantfinder.screens
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.cenkeraydin.restaurantfinder.R
 import com.cenkeraydin.restaurantfinder.components.ButtonComponent
 import com.cenkeraydin.restaurantfinder.components.DividerTextComponent
 import com.cenkeraydin.restaurantfinder.components.HeadingTextComponent

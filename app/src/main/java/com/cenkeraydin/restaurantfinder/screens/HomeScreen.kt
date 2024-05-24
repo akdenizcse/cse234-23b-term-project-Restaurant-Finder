@@ -1,3 +1,5 @@
+package com.cenkeraydin.restaurantfinder.screens
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,10 +9,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Diamond
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Diamond
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.DropdownMenu
@@ -35,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.cenkeraydin.restaurantfinder.R
 import com.cenkeraydin.restaurantfinder.RestaurantViewModel
 
 import com.google.firebase.auth.FirebaseAuth
@@ -52,12 +53,6 @@ val items = listOf(
         title = "Home",
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
-        hasNews = false,
-    ),
-    BottomNavigationItem(
-        title = "Profile",
-        selectedIcon = Icons.Filled.Person,
-        unselectedIcon = Icons.Outlined.Person,
         hasNews = false,
     ),
     BottomNavigationItem(
@@ -117,14 +112,8 @@ fun HomeScreen(navController: NavController) {
                             selected = selectedItemIndex == index,
                             onClick = {
                                 selectedItemIndex = index
-                                if (index ==0){
-
-                                }else if (index== 1){
-                                    navController.navigate("ProfileScreen")
-
-                                }else{
+                                if (index ==1) {
                                     navController.navigate("favoriteScreen")
-
                                 }
                             },
                             label = {
