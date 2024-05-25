@@ -1,5 +1,5 @@
 package com.cenkeraydin.restaurantfinder.screens
-import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +27,7 @@ import com.cenkeraydin.restaurantfinder.components.ButtonComponent
 import com.cenkeraydin.restaurantfinder.components.DividerTextComponent
 import com.cenkeraydin.restaurantfinder.components.HeadingTextComponent
 import com.cenkeraydin.restaurantfinder.components.Login
-import com.cenkeraydin.restaurantfinder.components.MyTextField
+import com.cenkeraydin.restaurantfinder.components.TextFieldApp
 import com.cenkeraydin.restaurantfinder.components.TextComponent
 import com.cenkeraydin.restaurantfinder.components.PasswordTextField
 import com.google.firebase.auth.FirebaseAuth
@@ -42,9 +42,9 @@ fun SignUpScreen(navController: NavController) {
     var confirmPassword by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     var message by remember { mutableStateOf("") }
-    val auth=FirebaseAuth.getInstance()
-    val currentUser= FirebaseAuth.getInstance().currentUser
-    val firestore= FirebaseFirestore.getInstance()
+    val auth = FirebaseAuth.getInstance()
+    val currentUser = FirebaseAuth.getInstance().currentUser
+    val firestore = FirebaseFirestore.getInstance()
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -60,27 +60,27 @@ fun SignUpScreen(navController: NavController) {
 
             HeadingTextComponent(value = stringResource(id = R.string.create_account))
             Spacer(modifier = Modifier.height(16.dp))
-            MyTextField(
+            TextFieldApp(
                 labelValue = stringResource(id = R.string.first_name),
                 imageVector = Icons.Default.Person,
-                value= firstName,
-                onValueChange = { firstName=it}
+                value = firstName,
+                onValueChange = { firstName = it }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            MyTextField(
+            TextFieldApp(
                 labelValue = stringResource(id = R.string.last_name),
                 imageVector = Icons.Default.Person,
                 value = lastName,
-                onValueChange = {lastName=it}
+                onValueChange = { lastName = it }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            MyTextField(
+            TextFieldApp(
                 labelValue = stringResource(id = R.string.email),
                 imageVector = Icons.Default.Email,
-                value= email,
-                onValueChange = { email =it}
+                value = email,
+                onValueChange = { email = it }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -88,20 +88,21 @@ fun SignUpScreen(navController: NavController) {
                 labelValue = stringResource(id = R.string.password),
                 imageVector = Icons.Default.Lock,
                 value = password,
-                onValueChange = { password = it}
+                onValueChange = { password = it }
             )
             Spacer(modifier = Modifier.height(8.dp))
             PasswordTextField(
                 labelValue = stringResource(id = R.string.passwordConfirm),
                 imageVector = Icons.Default.Lock,
                 value = confirmPassword,
-                onValueChange = { confirmPassword = it}
+                onValueChange = { confirmPassword = it }
             )
             Spacer(modifier = Modifier.height(80.dp))
             ButtonComponent(
                 value = stringResource(id = R.string.register),
                 navController,
-                isEnabled = email.isNotEmpty()&& password.isNotEmpty()) {
+                isEnabled = email.isNotEmpty() && password.isNotEmpty()
+            ) {
                 if (password == confirmPassword) {
                     isLoading = true
                     auth.createUserWithEmailAndPassword(email, password)
@@ -118,17 +119,16 @@ fun SignUpScreen(navController: NavController) {
                                     )
 
                                     firestore.collection("users").document(userId)
-                                        .set(userMap).addOnSuccessListener {  }.addOnFailureListener {  }
+                                        .set(userMap).addOnSuccessListener { }
+                                        .addOnFailureListener { }
                                 }
                                 navController.navigate("HomeScreen") // Kayıt başarılı olduğunda yönlendir
                             } else {
                                 message = task.exception?.message ?: "Registration failed"
-                                Log.e("RegisterScreen", "Registration failed: ${task.exception}")
                             }
                         }
                 } else {
                     message = "Passwords do not match"
-                    Log.e("RegisterScreen", "Passwords do not match")
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))

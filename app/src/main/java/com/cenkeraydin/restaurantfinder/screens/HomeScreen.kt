@@ -66,7 +66,7 @@ val items = listOf(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController,viewModel: RestaurantViewModel) {
 
     var selectedItemIndex by rememberSaveable { mutableStateOf(0) }
     var searchText by remember { mutableStateOf("") }
@@ -143,8 +143,7 @@ fun HomeScreen(navController: NavController) {
                 }
             }
         ) {paddingValues ->
-            val restaurantViewModel: RestaurantViewModel = viewModel()
-            MyApps(restaurantViewModel, paddingValues)
+            MyApps(viewModel, paddingValues)
 
 
         }
