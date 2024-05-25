@@ -88,7 +88,7 @@ fun HeadingTextComponent(value: String) {
 }
 
 @Composable
-fun MyTextField(labelValue: String, imageVector: ImageVector, value: String, onValueChange: (String) -> Unit) {
+fun TextFieldApp(labelValue: String, imageVector: ImageVector, value: String, onValueChange: (String) -> Unit) {
 
     OutlinedTextField(
         modifier = Modifier
