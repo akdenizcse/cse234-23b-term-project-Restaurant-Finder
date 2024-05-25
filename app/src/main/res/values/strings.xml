@@ -7,6 +7,7 @@
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="passwordConfirm">Password Confirm</string>
     <string name="hide_password">Hide password\n</string>
     <string name="show_password">Show Password</string>
     <string name="terms_conditions">"By continuing you accept our privacy policy and terms of use</string>
