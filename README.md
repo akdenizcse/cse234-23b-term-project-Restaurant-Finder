@@ -6,7 +6,7 @@ Our app comprises six key pages: Entry, Login, SignUp, Home, Restaurant Detail, 
 
 EatsExplorer is designed with the user in mind, ensuring that every feature and page is intuitive and easy to navigate. Our goal is to enrich your dining experiences, whether you’re discovering a hidden gem in your city or keeping track of your all-time favorite eateries. Join us on EatsExplorer and take your dining adventures to the next level!
 
-[Figma Link is HERE](#)
+[[Figma Link is HERE](https://www.figma.com/design/o6ycaP0VIkSMLmjK66niFo/Mobile-Project?node-id=0-1&t=nhIwdBu29vzrWHrb-0)]
 
 ## Work Distribution
 
