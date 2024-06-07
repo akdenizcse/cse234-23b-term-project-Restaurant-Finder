@@ -9,6 +9,8 @@ data class Restaurant(
     val date: String,
     var isFavorite: Boolean,
     val location: String,
-    val popularDishes: List<String>
+    val rating: String,
+    val popularDishes: List<String>,
+
 )
 

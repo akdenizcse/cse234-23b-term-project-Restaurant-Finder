@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -43,14 +44,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.cenkeraydin.restaurantfinder.FavoriList
 import com.cenkeraydin.restaurantfinder.RestaurantViewModel
 import com.cenkeraydin.restaurantfinder.data.Restaurant
+import com.google.common.io.Files.append
 
 
 @Composable
@@ -124,7 +131,7 @@ fun RestaurantItem(
             modifier = Modifier.padding(16.dp)
         ) {
             FavoriteButton(
-                productIsFavorite = restaurant.isFavorite,
+                productIsFavorite =  if (FavoriList.favoriteRestaurants.contains(restaurant)) true else false ,
                 onFavoriteClicked = {
                     onFavoriteClicked(restaurant.copy(isFavorite = it))
                 }
@@ -135,13 +142,13 @@ fun RestaurantItem(
                 modifier = Modifier.size(100.dp)
             )
             Column(
-                modifier = Modifier
+                modifier = Modifier.fillMaxSize().fillMaxWidth()
                     .padding(16.dp)
                     .align(Alignment.CenterVertically)
             ) {
                 Text(text = restaurant.name, style = TextStyle(fontSize = 20.sp))
-                Text(text = "Price: $${restaurant.price}", style = TextStyle(fontSize = 14.sp))
-                Text(text = "Date: ${restaurant.date}", style = TextStyle(fontSize = 14.sp))
+                Text(text = "Price: $${restaurant.price}", style = TextStyle(fontSize = 16.sp))
+                Text(text = "Rating: ${restaurant.rating}", style = TextStyle(fontSize = 16.sp))
 
             }
         }
@@ -209,22 +216,52 @@ fun RestaurantDetail(restaurant: Restaurant, onBackClicked: () -> Unit) {
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(350.dp)
                     .clip(shape = RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Name: ${restaurant.name}", style = TextStyle(fontSize = 20.sp))
+            Text(text = buildAnnotatedString {
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)) {
+                    append("Name: ")
+                }
+                withStyle(style = SpanStyle(fontSize = 20.sp)) {
+                    append(restaurant.name)
+                }
+            })
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Price: $${restaurant.price}", style = TextStyle(fontSize = 18.sp))
+            Text(text = buildAnnotatedString {
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)) {
+                    append("Price: ")
+                }
+                withStyle(style = SpanStyle(fontSize = 20.sp)) {
+                    append("$${restaurant.price}")
+                }
+            })
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Date: ${restaurant.date}", style = TextStyle(fontSize = 18.sp))
+            Text( text = buildAnnotatedString { withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)) {
+                append("Date: ")
+            }
+                    withStyle(style = SpanStyle(fontSize = 20.sp)) {
+                append(restaurant.date)
+            }
+            })
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Location: ${restaurant.location}", style = TextStyle(fontSize = 18.sp))
+            Text(text = buildAnnotatedString { withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)) {
+                append("Location: ")
+            }
+                withStyle(style = SpanStyle(fontSize = 20.sp)) {
+                    append(restaurant.location)
+                }
+            })
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Popular Dishes",
-                style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline, fontWeight = FontWeight.Bold, fontSize = 18.sp)) {
+                        append("Popular Dishes")
+                    }
+                },
+                style = TextStyle(fontSize = 18.sp)
             )
             Spacer(modifier = Modifier.height(8.dp))
 
