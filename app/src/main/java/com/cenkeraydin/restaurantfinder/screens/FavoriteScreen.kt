@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.cenkeraydin.restaurantfinder.RestaurantViewModel
 import com.cenkeraydin.restaurantfinder.components.HeadingTextComponent
@@ -39,7 +40,7 @@ fun FavoriteScreen(navController: NavController, viewModel: RestaurantViewModel)
                 }
             }
         } else {
-            Text(text = "Favori restoran yok", modifier = Modifier.padding(16.dp))
+            Text(text = "No Favorite Restaurant", fontSize = 18.sp, modifier = Modifier.padding(16.dp))
         }
     }
 }
