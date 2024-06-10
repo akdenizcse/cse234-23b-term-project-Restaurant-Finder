@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -78,7 +79,7 @@ fun HomeScreen(navController: NavController,viewModel: RestaurantViewModel) {
         verticalArrangement = Arrangement.Top
     ) {
         TopAppBar(
-            title = { Text(text = stringResource(id = R.string.project_name)) },
+            title = { Text(text = stringResource(id = R.string.project_name), textAlign = TextAlign.Center) },
             actions = {
                 IconButton(onClick = { expanded = true }) {
                     Icon(
@@ -96,7 +97,7 @@ fun HomeScreen(navController: NavController,viewModel: RestaurantViewModel) {
                             expanded = false
                             // Firebase Sign Out işlemleri burada
                             FirebaseAuth.getInstance().signOut()
-                            navController.navigate("LoginScreen") {
+                            navController.navigate("EntryScreen") {
                                 popUpTo("homeScreen") { inclusive = true }
                             }
                         }

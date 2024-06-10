@@ -2,14 +2,19 @@ package com.cenkeraydin.restaurantfinder.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -54,7 +60,7 @@ fun SignUpScreen(navController: NavController) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-
+            BackButton(navController = navController)
 
             TextComponent(value = stringResource(id = R.string.hello))
 
@@ -140,5 +146,22 @@ fun SignUpScreen(navController: NavController) {
             Login(navController = navController)
         }
 
+    }
+    
+}
+@Composable
+fun BackButtonSignUp(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    icon: ImageVector = Icons.Default.ArrowBack,
+    contentDescription: String = "Back"
+) {
+    Row(modifier = modifier) {
+        IconButton(
+            onClick = { navController.navigate("EntryScreen") },
+            Modifier.safeContentPadding()
+        ) {
+            Icon(icon, contentDescription)
+        }
     }
 }

@@ -114,9 +114,6 @@ fun LoginScreen(navControler: NavController) {
         }
         Spacer(modifier = Modifier.height(32.dp))
 
-        TextButton(onClick = { }) {
-            Text(text = "Forgot Password")
-        }
         errorMessage?.let {
             Text(
                 modifier = Modifier.padding(vertical = 8.dp),
